@@ -184,13 +184,21 @@ class NaveController extends Controller
 
 	public function listarNavesFiltro(Request $request){
 
-		$naves = Nave::class;
+		$naveClass = Nave::class;
 
-		$result = $naves::where('tipo',$request->request->get('tipo'))->get();
+		if($request->request->get('tipo'))
+			$naveClass = $naveClass::where('tipo',$request->request->get('tipo'));
+		if($request->request->get('modelo'))
+			$naveClass = $naveClass::where('modelo','like','%'.$request->request->get('modelo').'%');
+
+
+		$naves = $naveClass->get();
+
+
 
 		$resultado = [];
 
-		foreach ($result as $nave) {
+		foreach ($naves as $nave) {
 			
 			$resultado[] = [
 

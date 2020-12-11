@@ -5,13 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Piloto extends Model
+class Mision extends Model
 {
     use HasFactory;
 
+    public function piloto(){
 
-    public function nave(){
-    	return $this->belongsTo(Nave::class);
+    	return $this->belongsTo(Piloto::class);
+
     }
 
+    public function nave(){
+
+    	return $this->belongsTo(Nave::class);
+
+    }
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Nave extends Model
 {
     use HasFactory;
+
+    public function pilotos(){
+    	return $this->hasMany(Piloto::class);
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\NaveController;
 use App\Http\Controllers\PilotoController;
+use App\Http\Controllers\MisionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,10 @@ Route::prefix('pilotos')->group(function () {
 	Route::post('/crear',[PilotoController::class,"crearPiloto"]);
 	Route::post('/modificar/{id}',[PilotoController::class,"modificarPiloto"]);
 	Route::post('/borrar/{id}',[PilotoController::class,"borrarPiloto"]);
+	Route::get('/consultar/{id}',[PilotoController::class,"verPiloto"]);
+});
+
+Route::prefix('misiones')->group(function () {
+	Route::post('/crear',[MisionController::class,"crearMision"]);
+	Route::get('/consultar/{id}',[MisionController::class,"verMision"]);
 });

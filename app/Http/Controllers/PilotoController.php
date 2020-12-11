@@ -142,4 +142,29 @@ class PilotoController extends Controller
 
 		return response($respuesta);
 	}
+
+	public function verPiloto($id){
+
+		$piloto = Piloto::find($id);
+
+		if($piloto){
+
+			return response()->json(
+
+				[
+					"id" => $piloto->id,
+					"nombre" => $piloto->nombre,
+					"planeta" => $piloto->planeta,
+					"rango" => $piloto->rango,
+					"numero" => $piloto->numero,
+					"nave_id" => $piloto->nave_id,
+					"nave_modelo" => $piloto->nave->modelo,
+					"fecha_nacimiento" => $piloto->fecha_nacimiento
+				]
+
+			);
+		}
+
+		return response("Piloto no encontrada");
+	}
 }
