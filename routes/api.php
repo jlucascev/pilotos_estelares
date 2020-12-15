@@ -8,6 +8,7 @@ use App\Http\Controllers\PilotoController;
 use App\Http\Controllers\MisionController;
 use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\ReparacionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\ReparacionController;
 |
 */
 
-Route::prefix('naves')->group(function () {
+Route::middleware('auth:api')->prefix('naves')->group(function () {
 	Route::post('/crear',[NaveController::class,"crearNave"]);
 	Route::post('/modificar/{id}',[NaveController::class,"modificarNave"]);
 	Route::post('/borrar/{id}',[NaveController::class,"borrarNave"]);
@@ -29,19 +30,19 @@ Route::prefix('naves')->group(function () {
 	Route::get('/filtrar',[NaveController::class,"listarNavesFiltro"]);
 });
 
-Route::prefix('pilotos')->group(function () {
+Route::middleware('auth:api')->prefix('pilotos')->group(function () {
 	Route::post('/crear',[PilotoController::class,"crearPiloto"]);
 	Route::post('/modificar/{id}',[PilotoController::class,"modificarPiloto"]);
 	Route::post('/borrar/{id}',[PilotoController::class,"borrarPiloto"]);
 	Route::get('/consultar/{id}',[PilotoController::class,"verPiloto"]);
 });
 
-Route::prefix('misiones')->group(function () {
+Route::middleware('auth:api')->prefix('misiones')->group(function () {
 	Route::post('/crear',[MisionController::class,"crearMision"]);
 	Route::get('/consultar/{id}',[MisionController::class,"verMision"]);
 });
 
-Route::prefix('mecanicos')->group(function () {
+Route::middleware('auth:api')->prefix('mecanicos')->group(function () {
 	Route::post('/crear',[MecanicoController::class,"crearMecanico"]);
 	Route::post('/modificar/{id}',[MecanicoController::class,"modificarMecanico"]);
 	Route::post('/borrar/{id}',[MecanicoController::class,"borrarMecanico"]);
@@ -49,8 +50,13 @@ Route::prefix('mecanicos')->group(function () {
 	Route::get('/consultar/{parametro}/{valor}',[MecanicoController::class,"verMecanico"]);
 });
 
-Route::prefix('reparaciones')->group(function () {
+Route::middleware('auth:api')->prefix('reparaciones')->group(function () {
 	Route::post('/crear',[ReparacionController::class,"crearReparacion"]);
 	Route::get('/consultar/{id}',[ReparacionController::class,"verReparacion"]);
+});
+
+Route::prefix('usuarios')->group(function () {
+	Route::post('/registrar',[UserController::class,"register"]);
+	Route::post('/login',[UserController::class,"login"]);
 });
 
