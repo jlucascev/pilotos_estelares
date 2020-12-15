@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NaveController;
 use App\Http\Controllers\PilotoController;
 use App\Http\Controllers\MisionController;
+use App\Http\Controllers\MecanicoController;
+use App\Http\Controllers\ReparacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,17 @@ Route::prefix('misiones')->group(function () {
 	Route::post('/crear',[MisionController::class,"crearMision"]);
 	Route::get('/consultar/{id}',[MisionController::class,"verMision"]);
 });
+
+Route::prefix('mecanicos')->group(function () {
+	Route::post('/crear',[MecanicoController::class,"crearMecanico"]);
+	Route::post('/modificar/{id}',[MecanicoController::class,"modificarMecanico"]);
+	Route::post('/borrar/{id}',[MecanicoController::class,"borrarMecanico"]);
+	Route::get('/',[MecanicoController::class,"listarMecanicos"]);
+	Route::get('/consultar/{parametro}/{valor}',[MecanicoController::class,"verMecanico"]);
+});
+
+Route::prefix('reparaciones')->group(function () {
+	Route::post('/crear',[ReparacionController::class,"crearReparacion"]);
+	Route::get('/consultar/{id}',[ReparacionController::class,"verReparacion"]);
+});
+

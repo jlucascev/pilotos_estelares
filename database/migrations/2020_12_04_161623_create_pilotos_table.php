@@ -34,6 +34,6 @@ class CreatePilotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pilots');
+        Schema::dropIfExists('pilotos');
     }
 }

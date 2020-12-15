@@ -165,6 +165,6 @@ class PilotoController extends Controller
 			);
 		}
 
-		return response("Piloto no encontrada");
+		return response("Piloto no encontrado");
 	}
 }
